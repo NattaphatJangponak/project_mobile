@@ -4,6 +4,9 @@ import 'package:mobile_project/Master_data.dart';
 import 'package:mobile_project/home.dart';
 import 'package:mobile_project/register.dart';
 import 'package:mobile_project/main.dart';
+import 'package:mobile_project/device.dart';
+import 'package:mobile_project/farm_type.dart';
+import 'package:mobile_project/grow.dart';
 
 void main() {
   runApp(const MyApp());
@@ -17,10 +20,8 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
-        appBarTheme:
-             const AppBarTheme(color: Color(0xFF616161)),
-        colorScheme: ColorScheme.fromSeed(
-            seedColor: const Color(0xFF616161)),
+        appBarTheme: const AppBarTheme(color: Color(0xFF616161)),
+        colorScheme: ColorScheme.fromSeed(seedColor: const Color(0xFF616161)),
         useMaterial3: true,
       ),
       initialRoute: "/",
@@ -34,9 +35,12 @@ class MyApp extends StatelessWidget {
         '/home': (context) => WeatherScreen(),
         '/Master_data': (context) => MushroomTypeScreen(),
         '/register': (context) => RegisterScreen(),
+        '/device': (context) => Device(),
+        '/farm_type': (context) => FarmType(),
+        '/grow': (context) => GrowType(),
         // '/display_page': (context) => DisplayPage(
         //       name: '',
-        //     ),
+        //     ), Device
       },
       home: const AboutPages(),
     );

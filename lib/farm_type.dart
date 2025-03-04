@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:syncfusion_flutter_gauges/gauges.dart';
 
 void main() {
   runApp(MyApp());
@@ -9,12 +10,12 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: MushroomTypeScreen(),
+      home: FarmType(),
     );
   }
 }
 
-class MushroomTypeScreen extends StatelessWidget {
+class FarmType extends StatelessWidget {
   final List<Map<String, String>> mushrooms = [
     {'id': 'M001', 'name': 'Shiitake'},
     {'id': 'M002', 'name': 'Oyster Mushroom'},
@@ -38,8 +39,15 @@ class MushroomTypeScreen extends StatelessWidget {
       body: Padding(
         padding: const EdgeInsets.all(10.0),
         child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
+            Expanded(
+              child: GridView.count(
+                crossAxisCount: 2,
+                mainAxisSpacing: 10,
+                crossAxisSpacing: 10,
+                children: List.generate(4, (index) => GaugeWidget(value: 31)),
+              ),
+            ),
             Text(
               'Mushroom Type',
               style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
@@ -79,6 +87,34 @@ class MushroomTypeScreen extends StatelessWidget {
   }
 }
 
+class GaugeWidget extends StatelessWidget {
+  final double value;
+
+  GaugeWidget({required this.value});
+
+  @override
+  Widget build(BuildContext context) {
+    return SfRadialGauge(
+      axes: <RadialAxis>[
+        RadialAxis(
+          minimum: 0,
+          maximum: 100,
+          axisLabelStyle: GaugeTextStyle(color: Colors.black, fontSize: 12),
+          pointers: [NeedlePointer(value: value)],
+          annotations: [
+            GaugeAnnotation(
+              widget: Text('$value%',
+                  style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
+              angle: 90,
+              positionFactor: 0.5,
+            )
+          ],
+        ),
+      ],
+    );
+  }
+}
+
 class MushroomCard extends StatelessWidget {
   final Map<String, String> mushroom;
 
@@ -91,17 +127,15 @@ class MushroomCard extends StatelessWidget {
       child: Card(
         elevation: 3,
         child: Container(
+      
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
-            mainAxisSize: MainAxisSize.min,
             children: [
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
-                  Text(
-                    mushroom['id'] ?? '',
-                    style: const TextStyle(fontWeight: FontWeight.bold),
-                  ),
+                  Text(mushroom['id'] ?? '',
+                      style: TextStyle(fontWeight: FontWeight.bold)),
                   Text(mushroom['name'] ?? ''),
                 ],
               ),
@@ -109,13 +143,11 @@ class MushroomCard extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   IconButton(
-                    icon: const Icon(Icons.edit, color: Colors.blue),
-                    onPressed: () {},
-                  ),
+                      icon: Icon(Icons.edit, color: Colors.blue),
+                      onPressed: () {}),
                   IconButton(
-                    icon: const Icon(Icons.delete, color: Colors.red),
-                    onPressed: () {},
-                  ),
+                      icon: Icon(Icons.delete, color: Colors.red),
+                      onPressed: () {}),
                 ],
               ),
             ],

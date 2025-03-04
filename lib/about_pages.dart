@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 import 'Master_data.dart';
 import 'home.dart';
 import 'register.dart';
-
+import 'device.dart';
+import 'farm_type.dart';
+import 'grow.dart';
 
 class AboutPages extends StatelessWidget {
   const AboutPages({super.key});
@@ -73,12 +75,24 @@ class AboutPages extends StatelessWidget {
                 },
                 child: const Text('Register'),
               ),
-              // ElevatedButton(
-              //   onPressed: () {
-              //     Navigator.pushNamed(context, '/http_basic');
-              //   },
-              //   child: const Text('Http Basic page'),
-              // ),
+              ElevatedButton(
+                onPressed: () {
+                  Navigator.pushNamed(context, '/device');
+                },
+                child: const Text('device'),
+              ),
+              ElevatedButton(
+                onPressed: () {
+                  Navigator.pushNamed(context, '/farm_type');
+                },
+                child: const Text('farmtype'),
+              ),
+              ElevatedButton(
+                onPressed: () {
+                  Navigator.pushNamed(context, '/grow');
+                },
+                child: const Text('grow_type'),
+              ),
               // IconButton(
               //     icon: Icon(Icons.display_settings),
               //     onPressed: () {

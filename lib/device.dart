@@ -9,12 +9,12 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: MushroomTypeScreen(),
+      home: Device(),
     );
   }
 }
 
-class MushroomTypeScreen extends StatelessWidget {
+class Device extends StatelessWidget {
   final List<Map<String, String>> mushrooms = [
     {'id': 'M001', 'name': 'Shiitake'},
     {'id': 'M002', 'name': 'Oyster Mushroom'},
@@ -106,10 +106,14 @@ class MushroomCard extends StatelessWidget {
                 ],
               ),
               Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
                   IconButton(
                     icon: const Icon(Icons.edit, color: Colors.blue),
+                    onPressed: () {},
+                  ),
+                  IconButton(
+                    icon: const Icon(Icons.cut, color: Colors.green),
                     onPressed: () {},
                   ),
                   IconButton(
